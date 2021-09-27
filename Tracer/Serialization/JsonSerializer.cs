@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.Json;
+using Tracer.DataTypes;
 
 namespace Tracer.Serialization
 {
@@ -6,7 +8,8 @@ namespace Tracer.Serialization
     {
         public string Serialize(TraceResult traceResult)
         {
-            return new JsonSerializer().Serialize(traceResult);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            return System.Text.Json.JsonSerializer.Serialize(traceResult, options);
         }
     }
 }

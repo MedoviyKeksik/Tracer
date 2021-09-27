@@ -1,4 +1,5 @@
-﻿using Tracer.Serialization;
+﻿using Tracer.DataTypes;
+using Tracer.Serialization;
 
 namespace Tracer.Printing
 {

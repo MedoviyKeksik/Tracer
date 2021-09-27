@@ -8,8 +8,9 @@ namespace Tracer.DataTypes
 {
     public class ThreadInfo
     {
+        internal List<MethodInfo> _methods = new List<MethodInfo>();
         public int Id { get; set; }
         public long Time { get; set; }
-        public List<MethodInfo> Methods { get; set; } = new List<MethodInfo>();
+        public IReadOnlyList<MethodInfo> Methods { get => _methods; }
     }
 }

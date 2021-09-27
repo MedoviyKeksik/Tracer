@@ -1,4 +1,5 @@
 ﻿using System;
+using Tracer.DataTypes;
 
 namespace Tracer
 {

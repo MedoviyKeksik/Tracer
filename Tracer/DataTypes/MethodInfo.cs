@@ -8,9 +8,10 @@ namespace Tracer.DataTypes
 {
     public class MethodInfo
     {
+        internal List<MethodInfo> _methods = new List<MethodInfo>();
         public string Name { get; set; }
         public string Class { get; set; }
         public long Time { get; set; }
-        public List<MethodInfo> Methods { get; set; } = new List<MethodInfo>();
+        public IReadOnlyList<MethodInfo> Methods { get => _methods; }
     }
 }

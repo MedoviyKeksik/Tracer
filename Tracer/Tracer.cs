@@ -49,12 +49,12 @@ namespace Tracer
             {
                 if (currentRecord.Methods.Count == 0)
                 {
-                    currentRecord.ThreadInfo.Methods.Add(methodInfo);
+                    currentRecord.ThreadInfo._methods.Add(methodInfo);
                 }
                 else
                 {
                     var tmp = currentRecord.Methods.Peek();
-                    tmp.Methods.Add(methodInfo);
+                    tmp._methods.Add(methodInfo);
                 }
                 currentRecord.Methods.Push(methodInfo);
             } 
@@ -63,7 +63,7 @@ namespace Tracer
                 currentRecord = new ThreadRecord();
                 currentRecord.ThreadInfo = new ThreadInfo();
                 currentRecord.ThreadInfo.Id = currentThreadId;
-                currentRecord.ThreadInfo.Methods.Add(methodInfo);
+                currentRecord.ThreadInfo._methods.Add(methodInfo);
                 currentRecord.Methods = new Stack<MethodInfo>();
                 currentRecord.Methods.Push(methodInfo);
                 _threadRecords.TryAdd(currentThreadId, currentRecord);
