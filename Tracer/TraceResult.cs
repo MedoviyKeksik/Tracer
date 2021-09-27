@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tracer.DataTypes;
 
 namespace Tracer
 {
     public class TraceResult
     {
-        public List<ThreadInfo> Threads { get; set; }
+        private IEnumerable<ThreadInfo> _threads;
+        internal TraceResult(IEnumerable<ThreadInfo> threads)
+        {
+            _threads = threads;
+        }
+
+        public IEnumerable<ThreadInfo> Threads { get => _threads; }
     }
 }

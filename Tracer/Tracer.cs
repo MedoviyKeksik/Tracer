@@ -19,15 +19,16 @@ namespace Tracer
         {
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
+            _threadRecords = new ConcurrentDictionary<int, ThreadRecord>();
         }
         public TraceResult GetTraceResult()
         {
-            var traceResult = new TraceResult();           
+            var tmp = new List<ThreadInfo>();
             foreach (var record in _threadRecords.Values)
             {
-                traceResult.Threads.Add(record.ThreadInfo.Clone());
+                tmp.Add(record.ThreadInfo);
             }
-            return traceResult;
+            return new TraceResult(tmp);
         }
 
         public MethodInfo GetPreviousMethodInfo()
@@ -59,11 +60,13 @@ namespace Tracer
             } 
             else
             {
+                currentRecord = new ThreadRecord();
                 currentRecord.ThreadInfo = new ThreadInfo();
                 currentRecord.ThreadInfo.Id = currentThreadId;
                 currentRecord.ThreadInfo.Methods.Add(methodInfo);
                 currentRecord.Methods = new Stack<MethodInfo>();
                 currentRecord.Methods.Push(methodInfo);
+                _threadRecords.TryAdd(currentThreadId, currentRecord);
             }
             methodInfo.Time = _stopwatch.ElapsedMilliseconds;
         }
