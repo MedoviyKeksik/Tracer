@@ -26,12 +26,17 @@ namespace Tracer
             var tmp = new List<ThreadInfo>();
             foreach (var record in _threadRecords.Values)
             {
+                record.ThreadInfo.Time = 0;
+                foreach (var method in record.ThreadInfo.Methods)
+                {
+                    record.ThreadInfo.Time += method.Time;
+                }
                 tmp.Add(record.ThreadInfo);
             }
             return new TraceResult(tmp);
         }
 
-        public MethodInfo GetPreviousMethodInfo()
+        private MethodInfo GetPreviousMethodInfo()
         {
             var method = new StackFrame(2).GetMethod();
             return new MethodInfo
@@ -53,8 +58,8 @@ namespace Tracer
                 }
                 else
                 {
-                    var tmp = currentRecord.Methods.Peek();
-                    tmp._methods.Add(methodInfo);
+                    var lastMethod = currentRecord.Methods.Peek();
+                    lastMethod._methods.Add(methodInfo);
                 }
                 currentRecord.Methods.Push(methodInfo);
             } 
