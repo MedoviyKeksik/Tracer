@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tracer;
+using Tracer.Printing;
+using Tracer.Serialization;
 
 namespace SampleApp
 {
@@ -28,7 +31,10 @@ namespace SampleApp
             var foo = new Foo(tracer);
             foo.Method();
             var result = tracer.GetTraceResult();
-            Console.WriteLine("Hello World!");
+            var cw = new ConsoleWriter();
+            var serializer = new XmlSerializer();
+            cw.Write(result, serializer);
+
         }
     }
 }
