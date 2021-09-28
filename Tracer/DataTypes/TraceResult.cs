@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using Tracer.DataTypes;
 
 namespace Tracer.DataTypes
