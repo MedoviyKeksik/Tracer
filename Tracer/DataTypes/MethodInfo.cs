@@ -12,11 +12,11 @@ namespace Tracer.DataTypes
         [DataMember(Name = "Methods")]
         internal List<MethodInfo> _methods = new List<MethodInfo>();
         [DataMember]
-        public string Name { get; set; }
+        public string Name { get; internal set; }
         [DataMember]
-        public string Class { get; set; }
+        public string Class { get; internal set; }
         [DataMember]
-        public long Time { get; set; }
+        public long Time { get; internal set; }
         public IReadOnlyList<MethodInfo> Methods { get => _methods; }
     }
 }
