@@ -62,7 +62,7 @@ namespace SampleApp
             bar.OuterMethod(4, 4);
             thread.Join();
 
-            var result = tracer.GetTraceResult()
+            var result = tracer.GetTraceResult();
             var cw = new ConsoleWriter();
             ISerializer serializer = new XmlSerializer();
             cw.Write(result, serializer);
